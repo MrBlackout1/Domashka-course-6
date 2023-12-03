@@ -18,24 +18,24 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-//        // Створення користувача
-//        try {
-//            String newUserJson = "{\"name\":\"John Doe\",\"username\":\"johndoe\",\"email\":\"john.doe@example.com\"}";
-//            String createdUserJson = createUser(newUserJson);
-//
-//            System.out.println("Створений користувач:\n" + createdUserJson);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        // Оновлення користувача
-//        try {
-//            String updatedUserJson = updateExistingUser("{\"id\": 1, \"name\":\"John Doe\",\"username\":\"johndoe\",\"email\":\"john.doe@example.com\"}");
-//
-//            System.out.println("Оновлений користувач:\n" + updatedUserJson);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        // Створення користувача
+        try {
+            String newUserJson = "{\"name\":\"John Doe\",\"username\":\"johndoe\",\"email\":\"john.doe@example.com\"}";
+            String createdUserJson = createUser(newUserJson);
+
+            System.out.println("Створений користувач:\n" + createdUserJson);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Оновлення користувача
+        try {
+            String updatedUserJson = updateExistingUser("{\"id\": 1, \"name\":\"John Doe\",\"username\":\"johndoe\",\"email\":\"john.doe@example.com\"}");
+
+            System.out.println("Оновлений користувач:\n" + updatedUserJson);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // Видалення користувача
         try {
@@ -45,18 +45,18 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//
-//        // Отримання інформації про всіх користувачів
-//        getAllUsers();
-//
-//        // Отримання інформації про користувача за id
-//        getUserById(2);
-//
-//        // Отримання інформації про користувача за username
-//        getUserByUsername("Bret");
-//
-//        // 3 завдання
-//        printOpenTasks(1);
+
+        // Отримання інформації про всіх користувачів
+        getAllUsers();
+
+        // Отримання інформації про користувача за id
+        getUserById(2);
+
+        // Отримання інформації про користувача за username
+        getUserByUsername("Bret");
+
+        // 3 завдання
+        printOpenTasks(1);
 
     }
 
