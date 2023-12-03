@@ -18,49 +18,45 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        // Створення користувача
-        try {
-            String newUserJson = "{\"name\":\"John Doe\",\"username\":\"johndoe\",\"email\":\"john.doe@example.com\"}";
-            String createdUserJson = createUser(newUserJson);
-
-            System.out.println("Створений користувач:\n" + createdUserJson);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Оновлення користувача
-        try {
-            String updatedUserJson = updateExistingUser("{\"id\": 1, \"name\":\"John Doe\",\"username\":\"johndoe\",\"email\":\"john.doe@example.com\"}");
-
-            System.out.println("Оновлений користувач:\n" + updatedUserJson);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        // Створення користувача
+//        try {
+//            String newUserJson = "{\"name\":\"John Doe\",\"username\":\"johndoe\",\"email\":\"john.doe@example.com\"}";
+//            String createdUserJson = createUser(newUserJson);
+//
+//            System.out.println("Створений користувач:\n" + createdUserJson);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        // Оновлення користувача
+//        try {
+//            String updatedUserJson = updateExistingUser("{\"id\": 1, \"name\":\"John Doe\",\"username\":\"johndoe\",\"email\":\"john.doe@example.com\"}");
+//
+//            System.out.println("Оновлений користувач:\n" + updatedUserJson);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         // Видалення користувача
         try {
-            boolean isDeleted = deleteExistingUser(API_URL);
-
-            if (isDeleted) {
-                System.out.println("Користувач успішно видалений.");
-            } else {
-                System.out.println("Не вдалося видалити користувача.");
-            }
+            int userId = 1;
+            deleteExistingUser(userId);
+            System.out.println("Користувач успішно видалений.");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        // Отримання інформації про всіх користувачів
-        getAllUsers();
-
-        // Отримання інформації про користувача за id
-        getUserById(2);
-
-        // Отримання інформації про користувача за username
-        getUserByUsername("Bret");
-
-        // 3 завдання
-        printOpenTasks(1);
+//
+//        // Отримання інформації про всіх користувачів
+//        getAllUsers();
+//
+//        // Отримання інформації про користувача за id
+//        getUserById(2);
+//
+//        // Отримання інформації про користувача за username
+//        getUserByUsername("Bret");
+//
+//        // 3 завдання
+//        printOpenTasks(1);
 
     }
 
@@ -117,14 +113,17 @@ public class Main {
         }
     }
 
-    private static boolean deleteExistingUser(String apiUrl) throws IOException {
-        int responseCode = Jsoup.connect(apiUrl)
-                .ignoreContentType(true)
-                .method(org.jsoup.Connection.Method.GET)
-                .execute()
-                .statusCode();
+    private static void deleteExistingUser(int userId) throws IOException {
+        String apiUrl = API_URL + "/"+ userId;
+        URL url = new URL(apiUrl);
 
-        return responseCode >= 200 && responseCode < 300;
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("DELETE");
+
+        int responseCode = connection.getResponseCode();
+        if (responseCode != HttpURLConnection.HTTP_OK) {
+            throw new IOException("Failed to delete user. Response Code: " + responseCode);
+        }
     }
 
     private static void getAllUsers() throws IOException {
